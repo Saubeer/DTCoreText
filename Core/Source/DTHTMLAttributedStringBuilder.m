@@ -70,7 +70,7 @@
 	BOOL _ignoreInlineStyles; // ignores style blocks attached on elements
 }
 
-- (id)initWithHTML:(NSData *)data options:(NSDictionary *)options documentAttributes:(NSDictionary **)docAttributes
+- (id)initWithHTML:(NSData *)data options:(NSDictionary *)options documentAttributes:(NSDictionary * __autoreleasing*)docAttributes
 {
 	self = [super init];
 	if (self)
@@ -205,6 +205,13 @@
 	{
 		_defaultFontDescriptor.fontFamily = @"Times New Roman";
 	}
+
+	NSString *defaultFontName = [_options objectForKey:DTDefaultFontName];
+
+	if (defaultFontName) {
+		_defaultFontDescriptor.fontName = defaultFontName;
+	}
+
 	
 	_defaultLinkColor = [_options objectForKey:DTDefaultLinkColor];
 	
